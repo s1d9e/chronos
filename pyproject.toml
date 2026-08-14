@@ -10,12 +10,18 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "s1d9e" }]
-keywords = ["malware", "sandbox", "forensics", "blue-team", "dynamic-analysis", "instrumentation"]
+keywords = ["malware", "sandbox", "forensics", "blue-team", "dynamic-analysis", "instrumentation", "dfir", "threat-intel"]
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: Developers",
     "Topic :: Security",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
@@ -24,7 +30,12 @@ dependencies = [
 
 [project.optional-dependencies]
 windows = ["frida>=16.0"]
-dev = ["pytest>=8.0", "ruff>=0.5", "mypy>=1.10"]
+dev = ["pytest>=8.0", "ruff>=0.5", "mypy>=1.10", "build>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/s1d9e/chronos"
+Documentation = "https://github.com/s1d9e/chronos/blob/main/README.md"
+Changelog = "https://github.com/s1d9e/chronos/blob/main/CHANGELOG.md"
 
 [project.scripts]
 chronos = "chronos.cli:main"
@@ -32,6 +43,9 @@ chronos = "chronos.cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["chronos*"]
+
+[tool.setuptools.package-data]
+chronos = ["py.typed"]
 
 [tool.ruff]
 line-length = 100
