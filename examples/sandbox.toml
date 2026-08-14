@@ -1,0 +1,44 @@
+# Example Chronos configuration (TOML).
+# Values shown are the defaults. Any section may be omitted.
+
+timeout = 20.0
+capture_io = true
+io_preview = 64
+
+# Paths / patterns whose writes are flagged as persistence candidates.
+persistence_paths = [
+    ".config/autostart",
+    ".bashrc",
+    ".bash_profile",
+    ".profile",
+    ".zshrc",
+    ".ssh/authorized_keys",
+    "/etc/cron.d",
+    "/etc/crontab",
+    "/etc/systemd/system",
+    "/etc/rc.local",
+    "/etc/profile.d",
+    "/etc/xdg/autostart",
+]
+
+# Files read that indicate trace / sandbox probing.
+anti_debug_reads = [
+    "/proc/self/status",
+    "/proc/self/stat",
+    "/proc/self/wchan",
+]
+
+# Beaconing heuristic: N+ connections to the same host within the window.
+beacon_min = 3
+beacon_window = 10.0
+
+# Flag anonymous RWX mappings as potential injected/obfuscated code.
+rwx_anon = true
+
+# Loopback sinkhole: intercept DNS/HTTP on the host (observation only).
+# Ports >1024 work as a normal user; use 53/80 only as root.
+sinkhole_enabled = true
+sinkhole_dns_port = 5353
+sinkhole_http_port = 8080
+sinkhole_http_preview = 256
+sinkhole_resolve_ip = "127.0.0.1"
